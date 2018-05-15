@@ -12,12 +12,6 @@ protected:
     {
         return v1 != v2;
     }
-
-public:
-    DiffConstraint(Variable<V> &i, Variable<V> &j)
-        : Constraint<V>(i, j)
-    {
-    }
 };
 
 #endif

@@ -12,7 +12,7 @@ public:
     const std::string name;
     
     Variable(const std::string name, const std::set<Value> domain)
-        : domain(domain)
+        : name(name), domain(domain)
     {
     }
 };

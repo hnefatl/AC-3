@@ -3,4 +3,5 @@
 mkdir -p bin
 cd bin
 
+#g++ -fsanitize=undefined,address -O2 --std=c++14 -I../include ../src/**
 g++ -O2 --std=c++14 -I../include ../src/**
