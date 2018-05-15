@@ -33,13 +33,11 @@ public:
         for (const auto variableEdgePair : edges)
             toUpdate.insert(variableEdgePair.second.begin(), variableEdgePair.second.end());
 
-        std::cout << "a" << std::endl;
         while (!toUpdate.empty())
         {
             const auto it = toUpdate.begin();
             const Edge<V> e = *it;
             toUpdate.erase(it);
-            std::cout << "b" << std::endl;
 
             if (e.constraint->enforce(e.source, e.dest))
             {

@@ -8,8 +8,8 @@ template<typename Value>
 class Variable
 {
 public:
-    std::set<Value> domain;
     const std::string name;
+    std::set<Value> domain;
     
     Variable(const std::string name, const std::set<Value> domain)
         : name(name), domain(domain)

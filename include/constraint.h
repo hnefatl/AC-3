@@ -36,7 +36,7 @@ public:
 
     bool operator <(const Constraint<V> &rhs) const
     {
-        typeid(this).name() < typeid(&rhs).name();
+        return typeid(this).name() < typeid(&rhs).name();
     }
 };
 

@@ -39,9 +39,10 @@ int main(int argc, char *argv[])
         std::cout << "Assignment " << ++counter << ": " << a.first << " = " << colourToString(a.second) << std::endl;
 
         // Get the variable
-        const auto it = std::find_if(g.getVariables().begin(), g.getVariables().end(),
-                                [a](const auto v) { return v->name == a.first; });
-        if (it == g.getVariables().end() || *it == nullptr)
+        const auto vars = g.getVariables();
+        const auto it = std::find_if(vars.begin(), vars.end(), [a](const auto v) { return v->name == a.first; });
+
+        if (it == vars.end() || *it == nullptr)
         {
             std::cout << "Invalid assignment" << std::endl;
             return -2;
@@ -51,18 +52,18 @@ int main(int argc, char *argv[])
         const auto v = *it;
         v->domain = { a.second };
 
-        if (!g.performAC3())
-        {
-            std::cout << "Consistency fail" << std::endl;
-            return -1;
-        }
-        
+        bool failed = !g.performAC3();
         for (const auto v : g.getVariables())
         {
             std::cout << v->name << ":";
             for (const auto d : v->domain)
-                std::cout << " " << d;
+                std::cout << " " << colourToString(d);
             std::cout << std::endl;
+        }
+        if (failed)
+        {
+            std::cout << "Consistency fail" << std::endl;
+            return -1;
         }
         std::cout << std::endl;
     }
